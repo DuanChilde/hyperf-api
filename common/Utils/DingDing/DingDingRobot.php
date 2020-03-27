@@ -17,6 +17,9 @@ class DingDingRobot
 
     public function __construct($url)
     {
+        $timestamp  = floor(microtime(true) * 1000);
+        $sign = $this->sign($timestamp);
+        $url = $url.'&timestamp='.$timestamp.'&sign='.$sign;
         $this->url = $url;
     }
 
@@ -71,7 +74,6 @@ class DingDingRobot
     public function send()
     {
         $ch = curl_init();
-
         curl_setopt($ch, CURLOPT_URL, $this->url);
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
@@ -80,10 +82,18 @@ class DingDingRobot
             array_merge(['msgtype' => $this->messageType], $this->content, $this->atContent)
         ));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
         $data = curl_exec($ch);
         curl_close($ch);
 
         return json_decode($data, true);
+    }
+
+    protected function sign($timestamp)
+    {
+        $secret       = 'SECc957a0970ce9157429af3c9e4e9452caf6c9d78ac9871f43bfce01fc06ef189c';
+        $stringToSign = $timestamp . "\n" . $secret;
+        $signData     = base64_encode(hash_hmac('sha256', $stringToSign, $secret, true));
+
+        return rawurlencode($signData);
     }
 }
