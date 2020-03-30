@@ -28,4 +28,23 @@ return [
             ],
         ],
     ],
+
+    // 项目异常
+    'exception' => [
+        'handler' => [
+            'class' => Monolog\Handler\RotatingFileHandler::class,
+            'constructor' => [
+                'filename' => BASE_PATH . '/runtime/logs/exception/app_exception.log',
+                'level' => Monolog\Logger::ERROR,
+            ],
+        ],
+        'formatter' => [
+            'class' => Monolog\Formatter\LineFormatter::class,
+            'constructor' => [
+                'format' => null,
+                'dateFormat' => null,
+                'allowInlineLineBreaks' => true,
+            ],
+        ],
+    ],
 ];
