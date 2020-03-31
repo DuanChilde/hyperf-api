@@ -52,3 +52,8 @@ composer require ext-bcmath
 ## 五：数据验证层
 ##### 1.验证异常处理
 ##### 2.验证规则和使用
+
+
+## 六：JWT
+##### 1.composer require lcobucci/jwt
+##### 2.使用中间件进行拦截验证
