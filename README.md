@@ -57,3 +57,5 @@ composer require ext-bcmath
 ## 六：JWT
 ##### 1.composer require lcobucci/jwt
 ##### 2.使用中间件进行拦截验证
+
+## 七：跨域处理
