@@ -15,7 +15,7 @@ return [
         'driver' => Hyperf\AsyncQueue\Driver\RedisDriver::class,
         'channel' => 'queue',
 //        'timeout' => 2,
-        'retry_seconds' => [1,3,5,7],
+        'retry_seconds' => 1,
 //        'handle_timeout' => 10,
         'processes' => 1,
     ],

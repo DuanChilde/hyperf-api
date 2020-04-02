@@ -16,9 +16,12 @@ class ExampleJob extends Job
 {
     public $params;
 
+    public $maxAttempts;
+
     public function __construct($params)
     {
         $this->params = $params;
+        $this->maxAttempts=1;
     }
 
     public function handle()
@@ -26,7 +29,6 @@ class ExampleJob extends Job
         //根据参数处理具体逻辑
         //通过具体参数获取模型等
 //        var_dump($this->params);
-        echo date('Y-m-d H:i:s').'\n';
         throw new \Exception('执行失败');
     }
 
